@@ -8,36 +8,40 @@
 #include <GL/glut.h>
 
 const char TITLE[] = "MODEL";
-const float ORTHO[2][2] = {
-        {-1, 1},
-        {-1, 1}
+const float ORTHO[] = {
+        -1, 1,
+        -1, 1
 };
 
 void display(void);
-void init (void);
+
+void init(void);
+
 int shape = 0;
 
-void display(void)
-{
+void renderGrid();
+
+
+void display(void) {
     // Limpar todos os pixels
-    glClear (GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
 
     /**
      * YOUR CODE HERE
      */
+    renderGrid();
 
-    glutSwapBuffers ();
+    glutSwapBuffers();
 }
 
-int main(int argc, char** argv)
-{
+int main(int argc, char **argv) {
     printf("%s\n", TITLE);
     glutInit(&argc, argv);
-    glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowSize (500, 500);
-    glutInitWindowPosition (100, 100);
-    glutCreateWindow (TITLE);
-    init ();
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitWindowSize(500, 500);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow(TITLE);
+    init();
     glutDisplayFunc(display);
 
     glutMainLoop();
@@ -46,17 +50,32 @@ int main(int argc, char** argv)
 }
 
 
-void init (void)
-{
+void init(void) {
     // BACKGROUND
-    glClearColor (0.0, 0.0, 0.0, 0.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
 
     // inicializar sistema de viz.
     glMatrixMode(GL_PROJECTION);              // Seleciona Matriz de Projeção
     glLoadIdentity();
     // boundaries
-    glOrtho(ORTHO[0][0],ORTHO[0][1],ORTHO[1][0],ORTHO[1][1], -1.0, 1.0);
+    glOrtho(ORTHO[0], ORTHO[1], ORTHO[2], ORTHO[3], -1.0, 1.0);
 
     glMatrixMode(GL_MODELVIEW); // Select The Modelview Matrix
     glLoadIdentity();           // Inicializa com matriz identidade
+}
+
+/**
+ * Render an grid
+ */
+void renderGrid() {
+    glColor3f(0.0, 1.0, 0.0);
+    glBegin(GL_LINES);
+
+    glVertex3f(ORTHO[0], (ORTHO[2] + ORTHO[3])/2, 0.0);
+    glVertex3f(ORTHO[1], (ORTHO[2] + ORTHO[3])/2, 0.0);
+
+    glVertex3f((ORTHO[0] + ORTHO[1])/2, ORTHO[2], 0.0);
+    glVertex3f((ORTHO[0] + ORTHO[1])/2, ORTHO[3], 0.0);
+
+    glEnd();
 }
