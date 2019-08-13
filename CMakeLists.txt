@@ -5,14 +5,17 @@ set(CMAKE_CXX_STANDARD 14)
 project(model)
 add_executable(model src/model.cpp)
 
-project(exe1)
-add_executable(exe1 src/L1/exe1.cpp)
+project(l1exe1)
+add_executable(l1exe1 src/L1/exe1.cpp)
 
-project(exe2)
-add_executable(exe2 src/L1/exe2.cpp)
+project(l1exe2)
+add_executable(l1exe2 src/L1/exe2.cpp)
 
-project(exe3)
-add_executable(exe3 src/L1/exe3.cpp)
+project(l1exe3)
+add_executable(l1exe3 src/L1/exe3.cpp)
+
+project(l2exe1)
+add_executable(l2exe1 src/L2/exe1.cpp)
 # PROJECTS END
 
 
@@ -23,6 +26,8 @@ include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
 
 # TARGETS BEGIN
 target_link_libraries(model  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
-target_link_libraries(exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
-target_link_libraries(exe3  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(l1exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(l1exe2  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(l1exe3  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(l2exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 # TARGETS END
