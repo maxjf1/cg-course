@@ -19,6 +19,9 @@ add_executable(l2exe1 src/L2/exe1.cpp)
 
 project(l3exe1)
 add_executable(l3exe1 src/L3/exe1.cpp)
+
+project(l4exe1)
+add_executable(l4exe1 src/L4/exe1.cpp)
 # PROJECTS END
 
 
@@ -34,4 +37,5 @@ target_link_libraries(l1exe2  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 target_link_libraries(l1exe3  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 target_link_libraries(l2exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 target_link_libraries(l3exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(l4exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 # TARGETS END
