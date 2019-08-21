@@ -9,7 +9,9 @@ int width = 640, height = 480;
 
 int distOrigem = 5;
 
-int position[] = {0, 0};
+float position[] = {0, 0};
+float positionTransition[] = {0, 0};
+const float speed = 0.1;
 
 void init(void) {
     glClearColor(0.0, 0.0, 0.0, 0.0);
@@ -60,7 +62,7 @@ void display(void) {
     glPushMatrix();
     glColor3f(1.0f, 0.0f, 0.0);
     //glutSolidTorus(5.0f, 10.0f, 40, 40);
-    glTranslatef(position[1], 0, position[0]);
+    glTranslatef(positionTransition[1], 0, positionTransition[0]);
     glutSolidCube(1.0f);
     glPopMatrix();
 
@@ -69,7 +71,40 @@ void display(void) {
     glutSwapBuffers();
 }
 
+int getSignal(float val) {
+    int signal = 1;
+    if (val < 0)
+        signal = -1;
+    return signal;
+}
+
 void idle() {
+    float t, desiredFrameTime, frameTime;
+    static float tLast = 0.0;
+
+    // Get elapsed time
+    t = glutGet(GLUT_ELAPSED_TIME);
+    // convert milliseconds to seconds
+    t /= 1000.0;
+
+    // Calculate frame time
+    frameTime = t - tLast;
+    // Calculate desired frame time
+    desiredFrameTime = 1.0 / (float) (60);
+
+    // Check if the desired frame time was achieved. If not, skip animation.
+    if (frameTime <= desiredFrameTime)
+        return;
+
+    for (int i = 0; i < 2; ++i) {
+        if (position[i] == positionTransition[i]) continue;
+        int direction = getSignal(position[i] - positionTransition[i]);
+        positionTransition[i] += direction * speed;
+        if (direction != getSignal(position[i] - positionTransition[i]))
+            positionTransition[i] = position[i];
+
+    }
+
     glutPostRedisplay();
 }
 
