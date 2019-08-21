@@ -149,23 +149,6 @@ void keyboard(unsigned char key, int x, int y) {
     }
 }
 
-// Motion callback
-void motion(int x, int y) {
-    rotationX += (float) (y - last_y);
-    rotationY += (float) (x - last_x);
-
-    last_x = x;
-    last_y = y;
-}
-
-// Mouse callback
-void mouse(int button, int state, int x, int y) {
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        last_x = x;
-        last_y = y;
-    }
-}
-
 int main(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
@@ -175,8 +158,6 @@ int main(int argc, char **argv) {
     init();
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
-    glutMouseFunc(mouse);
-//    glutMotionFunc( motion );
     glutKeyboardFunc(keyboard);
     glutIdleFunc(idle);
     glutMainLoop();
