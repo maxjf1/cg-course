@@ -1,12 +1,3 @@
-/*
-  Name:         triangle_anim.cpp
-  Copyright:    Version 0.1
-  Author:       Rodrigo Luis de Souza da Silva
-  Last Update:  29/11/2018 (Animation based on FPS)
-  Release:      28/10/2004
-  Description:  Animação de triângulo usando função idle.
-                Update: visualização e escolhe do FPS desejado
-*/
 
 #include <iostream>
 #include <GL/glut.h>
