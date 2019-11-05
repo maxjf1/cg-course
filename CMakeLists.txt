@@ -29,15 +29,24 @@ add_executable(l4exe2 src/L4/exe2.cpp)
 project(l5exe1)
 add_executable(l5exe1 src/L5/exe1.cpp)
 
-project(l6exe1)
-add_executable(l6exe1 src/L8/exe1.cpp)
+project(l8exe1)
+add_executable(l8exe1 src/L8/exe1.cpp)
+
+project(l9exe1)
+add_executable(l9exe1 src/L9/exe1.cpp)
+
+
+project(l11exe1)
+add_executable(l11exe1 src/L11/exe1.cpp)
 
 # PROJECTS END
 
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
-include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+find_package(PNG REQUIRED)
+include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} ${PNG_INCLUDE_DIR} )
+#file(GLOB src/lib)
 
 
 # TARGETS BEGIN
@@ -50,5 +59,7 @@ target_link_libraries(l3exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 target_link_libraries(l4exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 target_link_libraries(l4exe2  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 target_link_libraries(l5exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
-target_link_libraries(l6exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(l8exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(l9exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(l11exe1  ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${PNG_LIBRARIES})
 # TARGETS END

@@ -40,6 +40,7 @@ int last_x, last_y;
 
 void maxSolidCylinder(float base, GLdouble height, GLint slices = 10) {
     const float RAD = M_PI / 180;
+    glTranslatef(0, 0, -height/2.0);
     glBegin(GL_QUAD_STRIP);
     for (int i = 0; i < slices + 1; ++i) {
         float g = i * (360.0 / slices);
@@ -59,7 +60,7 @@ void maxSolidCylinder(float base, GLdouble height, GLint slices = 10) {
 
     for (int j = 0; j < 2; ++j) {
         glBegin(GL_TRIANGLE_FAN);
-        glNormal3f(j == 0 ? -1 : 1, 0, 0);
+        glNormal3f(0, 0, j == 0 ? -1 : 1);
         glVertex3f(0, 0, height * (j % 2));
         for (int i = 0; i < slices + 1; ++i) {
             float g = i * (-360.0 / slices);
