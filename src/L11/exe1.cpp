@@ -87,7 +87,6 @@ void maxSolidCylinder(float base, GLdouble height, GLint slices = 10) {
         for (int i = 0; i < slices + 1; ++i) {
             float g = i * (-360.0 / slices);
 
-            cout << i << ": "<<  cos(g * RAD) << "  " << 1.0 * sin(g * RAD) << endl;
             glTexCoord2f( (cos(g * RAD)+1)/2,(sin(g * RAD)+1)/2 );
             glVertex3f(
                     base * cos(g * RAD),
